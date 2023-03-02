@@ -1,0 +1,46 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@coinbase/wallet-sdk": "^3.6.3",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.6",
+    "@next/font": "13.1.5",
+    "@types/node": "18.11.18",
+    "@types/react": "18.0.27",
+    "@types/react-dom": "18.0.10",
+    "@walletconnect/sign-client": "^2.3.3",
+    "@walletconnect/web3wallet": "^1.1.1",
+    "@web3-onboard/coinbase": "^2.2.0",
+    "@web3-onboard/core": "^2.14.1",
+    "@web3-onboard/injected-wallets": "^2.6.2",
+    "@web3-onboard/react": "^2.6.1",
+    "@web3-onboard/walletconnect": "^2.2.2",
+    "antd": "^5.1.6",
+    "bignumber": "^1.1.0",
+    "bignumber.js": "^9.1.1",
+    "eslint": "8.32.0",
+    "eslint-config-next": "13.1.5",
+    "ethers": "^5.7.2",
+    "next": "13.1.5",
+    "react": "18.2.0",
+    "react-blockies": "^1.4.1",
+    "react-dom": "18.2.0",
+    "typescript": "4.9.4",
+    "wagmi": "^0.11.3",
+    "web3": "^1.8.1",
+    "web3modal": "^1.9.12"
+  },
+  "devDependencies": {
+    "@types/react-blockies": "^1.4.1"
+  }
+}

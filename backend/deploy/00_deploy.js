@@ -1,0 +1,30 @@
+module.exports = async ({ getNamedAccounts, deployments }) => {
+  const { deploy } = deployments;
+  const { deployer, feeTo } = await getNamedAccounts();
+
+  const token = await deploy("TestToken", {
+    from: deployer,
+    args: [],
+    log: true,
+  });
+
+  const token2 = await deploy("TestToken2", {
+    from: deployer,
+    args: [],
+    log: true,
+  });
+
+  await deploy("Membership", {
+    from: deployer,
+    args: [],
+    log: true,
+  });
+
+  await deploy("SwapLab", {
+    from: deployer,
+    args: [ token?.address, token2?.address ],
+    log: true,
+  });
+};
+
+module.exports.tags = ["SwapLab", "Membership", "TestToken"];

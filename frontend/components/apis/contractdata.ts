@@ -1,11 +1,17 @@
-import vault from "../../../foundry/out/Vault.sol/Vault.json";
-import token from "../../../foundry/out/RewardToken.sol/RewardToken.json";
+import swapLab from "../../../backend/deployments/alfajores/SwapLab.json";
+import testToken from "../../../backend/deployments/alfajores/TestToken.json";
+import member from "../../../backend/deployments/alfajores/Membership.json";
+import testToken2 from "../../../backend/deployments/alfajores/TestToken2.json";
 
 export default function getContractData() {
   return {
-    vaultAbi: vault.abi,
-    tokenAbi: token.abi,
-    vaultAddr: "0x89330624480dE7Fc2e651233B022B85a1F998de7",
-    tokenAddr: "0xefA906f63ea950318d8d5Af13ae2E5D2aC221Fe4"
+    swapAbi: swapLab.abi,
+    swapLabAddr: swapLab.address,
+    testTokenAbi: testToken.abi,
+    test2TokenAbi: testToken2.abi,
+    test2Addr: testToken2.address,
+    testAddr: testToken.address,
+    memberAbi: member.abi,
+    memberAddr: member.address
   }
 }

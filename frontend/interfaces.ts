@@ -1,113 +1,66 @@
-import { EIP1193Provider, WalletState } from "@web3-onboard/core";
+import React, { ReactNode } from 'react';
 import BigNumber from "bignumber.js";
-import { ContractReceipt, ethers, Event } from "ethers";
-import React, { CSSProperties } from "react";
+import { ethers } from 'ethers';
 
-export interface NotificationProps {
-  message: string | JSX.Element;
-  description: string | JSX.Element;
+export const contractData = {
+  dateUploaded: BigNumber(0),
+  downloadCount: BigNumber(0),
+  uploader: '',
+  fileHash: ''
 }
 
-export interface PageProps {
-  isUserAuthenticated?: boolean;
-  handleConnect: () => Promise<void>;
+export interface InstanceProps {
+  swapAbi: any;
+  tokenAbi: any;
+  memberAbi: any;
+  test2Addr: string;
+  swapAddr: string; 
+  tokenAddr: string; 
+  memberAddr: string;
+  test2TokenAbi: any;
+  providerOrSigner: any
 }
 
-export interface AddressProp {
+export interface OptionProps {
+  value?: string | import('ethers').BigNumber;
+  functionName: string;
+  cancelLoading?: () => void;
+  providerOrSigner?: any,
   account?: string;
-  isAuthenticated?: boolean;
-  styleAvatarLeft?: CSSProperties;
-  styleAvatarRight?: CSSProperties;
-  style?: CSSProperties;
-  copyable?: boolean;
-  styleCopy?: CSSProperties;
-  avatar?: 'right' | 'left';
-  display?: boolean;
-  textStyle?: CSSProperties;
-  size?: number;
-  chainId?: SVGStringList;
+  amount?: string | BigNumber;
 }
 
-export interface Explorer {
-  address: string | null | undefined;
-  chainId: any;
-} 
-
-export interface Profile {
-  0: BigNumber;
-  1: BigNumber;
-  2: string;
-  celoAmount: BigNumber;
-  depositTime: BigNumber;
-  account: string;
+export interface Result {
+  balanceOrAllowance: BigNumber;
+  data: Data;
 }
 
-export const MockProfile = {
-  0: BigNumber(0),
-  1: BigNumber(0),
-  2: "",
-  3: "",
-  depositTime: BigNumber(0),
-  celoAmount: BigNumber(0),
-  account: ""
-}
-
-export interface AppProps {
-  account?: string;
-  logout: () => Promise<void>;
-  reconnect: () => Promise<WalletState[]>;
-}
-
-interface Receipt {
-  blockHash: string;
-  blockNumber: number;
-  byzantium: boolean;
-  confirmations: number;
-  contractAddress: string;
-  cumulativeGasUsed: ethers.BigNumber;
-  effectiveGasPrice: ethers.BigNumber;
-  from: string;
-  gasUsed: ethers.BigNumber;
-  logs: Array<any>;
-  logsBloom: string;
-  to: string;
-  transactionHash: string;
-  transactionIndex: number
-  type: number;
-  events?: Event[] | undefined;
-  root?: string | undefined;
-  status?: number | undefined;
-}
-
-export interface TransactionResultProp {
-  view: boolean;
-  receipt: Receipt;
-  read: ethers.BigNumber | Profile | string | number | Profile;
-}
-
-export const transactionResult : TransactionResultProp = {
-  view: false,
-  receipt: {
-    blockHash: '',
-    blockNumber: 0,
-    byzantium: false,
-    confirmations: 0,
-    contractAddress: '',
-    cumulativeGasUsed: ethers.BigNumber.from(0),
-    effectiveGasPrice: ethers.BigNumber.from(0),
-    from: '',
-    gasUsed: ethers.BigNumber.from(0),
-    logs: [],
-    logsBloom: '',
-    to: '',
-    transactionHash: '',
-    transactionIndex: 0,
-    type: 0,
-    events: [],
-    root: '',
-    status: 0
-  },
-  read: ethers.BigNumber.from(0)
+export interface CardProps {
+  step: string;
+  label?: string;
+  name?: string;
+  heading?: string;
+  description?: string;
+  displayChild?: boolean;
+  textFieldType?: string;
+  button_1_start?: string;
+  button_2_start?: string;
+  button_3_start?: string;
+  button_1_name?: string;
+  button_2_name?: string;
+  button_3_name?: string;
+  displayTextfield?: boolean;
+  isButton_1_display?: boolean;
+  isButton_2_display?: boolean;
+  isButton_3_display?: boolean;
+  disableButton_1?: boolean;
+  disableButton_2?: boolean;
+  disableButton_3?: boolean;
+  handleButton_1_Click?: () => void;
+  handleButton_2_Click?: () => void;
+  handleButton_3_Click?: () => void;
+  handleTextfieldChange?: (e:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+  children?: ReactNode
 }
 
 export interface SpinnerProps {
@@ -115,37 +68,63 @@ export interface SpinnerProps {
   rest?: React.CSSProperties
 }
 
-export type SwitchChainReturn = number;
-
-export interface ChainParams {
-  key: number;
-  icon: JSX.Element | string;
-  chainIdStr: string;
-  rpcUrls: Array<string>;
-  chainName: string;
-  nativeCurrency: { name: string, decimals: number, symbol: string };
-  blockExplorerUrls: Array<string>;
-  iconUrls: Array<string>;
-  callback?: (arg0: SwitchChainReturn) => void;
+export interface Provider {
+  amount: BigNumber;
+  timeProvided: BigNumber;
+  position: BigNumber;
+  isExist: boolean;
 }
 
-export interface ConnectButtonProp {
-  connect: () => Promise<void>;
+export interface Data {
+  _totalLiquidity: BigNumber;
+  _swapfee: BigNumber;
+  _totalFeeReceived: BigNumber;
+  _totalProvider: BigNumber;
+  _provider: Provider;
 }
 
-export interface InstanceProps {
-  vaultAbi: any;
-  tokenAbi: any;
-  vaultAddr: string,
-  tokenAddr: string;
-  provider: EIP1193Provider;
+export const data = {
+  _totalLiquidity: BigNumber(0),
+  _swapfee: BigNumber(0),
+  _totalFeeReceived: BigNumber(0),
+  _totalProvider: BigNumber(0),
+  _provider: {
+    amount: BigNumber(0),
+    timeProvided: BigNumber(0),
+    position: BigNumber(0),
+    isExist: false
+  },
 }
 
-export interface OptionProps {
-  cancelLoading?: () => void;
-  provider: EIP1193Provider;
-  functionName?: string;
-  value?: BigNumber | string;
-  who?: string;
-  account?: string;
+export interface SignUprops {
+  setauth: () => void;
+  isUser: boolean;
+  handleClick?: (x:string, y?: boolean) => Promise<void>;
+  address?: string;
+  isConnected?: boolean;
+  provider?: any;
+}
+
+
+
+export interface ConnectObj {
+  provider?: ethers.providers.Web3Provider | any,
+  address?: string | undefined;
+  balance?: string;
+  isUserAuthenticated?: boolean;
+}
+
+// export interface MainAppProps {
+//   provider: ethers.providers.Web3Provider | undefined,
+//   logout: () => Promise<void>;
+//   balance: string | undefined;
+//   address: string | undefined;
+//   library?: any;
+// }
+
+export interface IndexProps {
+  logout?: () =>  void;
+  handleConnect?: () => Promise<void>;
+  state?: ConnectObj;
+  setState?: (x:ConnectObj) => void; 
 }
